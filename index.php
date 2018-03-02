@@ -276,7 +276,7 @@ button:hover {
 		<div class="link">
 			<a>Home</a>
 			<a>Galerie</a>
-			<a>Creer son image</a>
+			<a href="view/montage.php">Creer son image</a>
 		</div>
 		<div class="link">
       <?php if (empty($_SESSION['logged'])) {?>

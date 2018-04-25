@@ -8,6 +8,18 @@
 <title>Display Webcam Stream</title>
   
 <style>
+.main {
+   width: 100%;
+   height: 500px;
+   display: flex;
+   background-color: red;
+}
+
+.a {
+   width: 100%;
+   height: auto; 
+}
+
 #container {
     margin: 0px auto;
     width: 
@@ -30,9 +42,10 @@
 <body>
 <div id="container">
     <video autoplay="true" id="videoElement"></video>
-    <button id="button"></button>
+        <button id="button"></button>
     <canvas id="canvas"></canvas>
 </div>
+<div id="result"></div>
 <script>
     navigator.getUserMedia = navigator.getUserMedia ||
                          navigator.webkitGetUserMedia ||
@@ -41,8 +54,10 @@
 if (navigator.getUserMedia) {
    navigator.getUserMedia({ audio: false, video: { width: 500, height: 375 } },
       function(stream) {
+          console.log(window);
          var video = document.getElementById("videoElement");
          video.src = window.URL.createObjectURL(stream);
+         console.log(video.src);
          video.onloadedmetadata = function(e) {
            video.play();
          };
@@ -63,6 +78,23 @@ if (navigator.getUserMedia) {
          canvas.height = video.videoHeight;
          canvas.width = video.videoWidth;
          ctx.drawImage(video, 0, 0);
+
+         var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            console.log(this);
+            if (this.readyState == 4 && this.status == 200) {
+            // Typical action to be performed when the document is ready:
+                document.getElementById("result").innerHTML = this.responseText;
+            console.log(this);
+            console.log(this.responseText);
+            console.log("hey !");
+            }
+        };
+        xhttp.open("POST", "../test.php", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        const src = video.src;
+        console.log(canvas);
+        xhttp.send("image="+src);
     });
 </script>
 </body>

@@ -36,10 +36,20 @@
     height: 375px;
     background-color: #555;
 }
+
+.header {
+    background-color: #F1F1F1;
+    text-align: center;
+    padding: 20px;
+}
+
 </style>
 </head>
   
 <body>
+<div class="header">
+    
+</div>
 <div id="container">
     <video autoplay="true" id="videoElement"></video>
         <button id="button"></button>
@@ -78,6 +88,8 @@ if (navigator.getUserMedia) {
          canvas.height = video.videoHeight;
          canvas.width = video.videoWidth;
          ctx.drawImage(video, 0, 0);
+         var i = canvas.toDataURL("image/jpeg");
+         console.log(i);
 
          var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {

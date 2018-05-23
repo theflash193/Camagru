@@ -94,7 +94,7 @@ button {
     background-color: #4CAF50;
     color: white;
     padding: 14px 20px;
-    margin: 8px 0;
+    /* margin: 8px 0; */
     border: none;
     cursor: pointer;
     width: 100%;
@@ -229,7 +229,7 @@ button {
   background-color: #4CAF50;
   color: white;
   padding: 14px 20px;
-  margin: 8px 0;
+  /* margin: 8px 0; */
   border: none;
   cursor: pointer;
   width: 100%;
@@ -335,3 +335,26 @@ button:hover {
     background-color: #555;
 }
  
+.overflow {
+    overflow: scroll;
+}
+
+.img-padding {
+    padding: 5px;
+} 
+
+.delete {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 0px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+.img-column {
+    /* height: 200px; */
+    border:1px white solid;
+    margin: 4px 0px;
+}

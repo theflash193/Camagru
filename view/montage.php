@@ -10,6 +10,19 @@
         <div id="result"></div> -->
     </div>
     <div class="column montage-side">
+        <div class="row overflow img-padding">
+            <?php
+                $i = 0;
+                while ($i < 15) {
+                    echo "<div class=\"img-column\">";
+                    echo "<img src=\"http://via.placeholder.com/350x150\" style=\"width: 250px;\">";
+                    echo "<button class=\"delete\" style=\"margin-top: 0px;padding: 2px;cursor: pointer;text-align: center;\">Delete</button>";
+                    echo "</div>";
+                    $i++;       
+                } 
+            ?>
+            </div>
+        </div>
     </div>
 </div>
 

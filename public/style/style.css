@@ -5,12 +5,27 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .header {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 10px;
     padding: 80px;
     text-align: center;
     color: white;
     font-size: 20px;
-} 
+}
 
+.content {
+    padding: 20px;
+    background-color: #000;
+    opacity: 0.9;
+
+}
+
+#title {
+    margin-bottom: 20px;
+}
 body {
     margin: 0;
     background: #000; 
@@ -31,6 +46,8 @@ video {
     width: 100%;
     display: flex;
     justify-content: space-between;
+    padding: 20px;
+    opacity: 0.8;
 }
 
 .navbar-fixed > div > a {
@@ -253,3 +270,68 @@ button:hover {
     width: 100%;
   }
 }
+
+.main {
+    width: 100%;
+    height: 500px;
+    display: flex;
+    background-color: red;
+ }
+ 
+ .a {
+    width: 100%;
+    height: auto; 
+ }
+ 
+ .footer {
+    background-color: black;
+    padding: 20px;
+    text-align: center;
+    color: white;
+  }
+  
+  .montage-container {
+     margin-top: 30px;
+     margin: 0px auto;
+     border: 1px white solid;
+     display: flex;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+ .column {
+     padding: 10px;
+     height: 600px;
+ }
+
+ .column.montage-main {
+     margin: 0px auto;
+     flex: 2;
+     border: 1px white solid;
+     display: flex;
+ }
+ 
+ .row {
+     display: flex;
+     flex-direction: column
+ }
+
+ .column.montage-side {
+     margin: 0px auto;
+     flex: 0.5;
+     border: 1px white solid;
+     display: flex;
+ }
+
+ #videoElement {
+    width: 500px;
+    height: 375px;
+    background-color: #666;
+}
+
+ #canvas {
+    width: 500px;
+    height: 375px;
+    background-color: #555;
+}
+ 

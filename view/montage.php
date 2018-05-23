@@ -1,61 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<meta content="stuff, to, help, search, engines, not" name="keywords">
-<meta content="What this page is about." name="description">
-<meta content="Display Webcam Stream" name="title">
-<title>Display Webcam Stream</title>
-  
-<style>
-.main {
-   width: 100%;
-   height: 500px;
-   display: flex;
-   background-color: red;
-}
+<?php
+	include_once "layout/header.php";
+?>
 
-.a {
-   width: 100%;
-   height: auto; 
-}
-
-#container {
-    margin: 0px auto;
-    width: 
-    height: 1000px;
-    border: 10px #333 solid;
-}
-#videoElement {
-    width: 500px;
-    height: 375px;
-    background-color: #666;
-}
-#canvas {
-    width: 500px;
-    height: 375px;
-    background-color: #555;
-}
-
-.header {
-    background-color: #F1F1F1;
-    text-align: center;
-    padding: 20px;
-}
-
-</style>
-</head>
-  
-<body>
-<div class="header">
-    
-</div>
-<div id="container">
-    <video autoplay="true" id="videoElement"></video>
+<div class="montage-container">
+    <div class="column montage-main">
+        <!-- <video autoplay="true" id="videoElement"></video>
         <button id="button"></button>
-    <canvas id="canvas"></canvas>
+        <canvas id="canvas"></canvas>
+        <div id="result"></div> -->
+    </div>
+    <div class="column montage-side">
+    </div>
 </div>
-<div id="result"></div>
+
 <script>
     navigator.getUserMedia = navigator.getUserMedia ||
                          navigator.webkitGetUserMedia ||
@@ -109,5 +66,6 @@ if (navigator.getUserMedia) {
         xhttp.send("image="+src);
     });
 </script>
+<?php include_once "layout/footer.php"; ?>
 </body>
 </html>

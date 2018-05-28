@@ -3,7 +3,7 @@
 	include_once "utils/global.php";
 	include_once "view/layout/header.php";
 ?>
-    <video autoplay muted loop>
+    <video class="video" autoplay muted loop>
         <source src="/camagru/public/video/final-fantasy-xv.mp4" width="100%"></source>
     </video>
     <div class="row">

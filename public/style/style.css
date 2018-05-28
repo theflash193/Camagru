@@ -1,4 +1,4 @@
-body {font-family: "Times New Roman", Georgia, Serif;}
+body {font-family: "Times New Roman", Georgia, Serif;color: white;}
 h1,h2,h3,h4,h5,h6 {
     font-family: "Playfair Display";
     letter-spacing: 5px;
@@ -14,6 +14,17 @@ h1,h2,h3,h4,h5,h6 {
     text-align: center;
     color: white;
     font-size: 20px;
+    height: 600px;
+}
+
+.video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    background-size: cover;
+    z-index: -1; 
 }
 
 .content {
@@ -29,16 +40,6 @@ h1,h2,h3,h4,h5,h6 {
 body {
     margin: 0;
     background: #000; 
-}
-
-video {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
-    background-size: cover;
-    z-index: -1; 
 }
 
 .navbar-fixed {
@@ -90,17 +91,15 @@ input[type=text], input[type=password] {
 }
 
 /* Set a style for all buttons */
-button {
-    background-color: #4CAF50;
+.button {
     color: white;
     padding: 14px 20px;
-    /* margin: 8px 0; */
+    margin: 8px 0;
     border: none;
     cursor: pointer;
-    width: 100%;
 }
 
-button:hover {
+.button:hover {
     opacity: 0.8;
 }
 
@@ -225,8 +224,7 @@ hr {
 }
 
 /* Set a style for all buttons */
-button {
-  background-color: #4CAF50;
+.button {
   color: white;
   padding: 14px 20px;
   /* margin: 8px 0; */
@@ -236,7 +234,7 @@ button {
   opacity: 0.9;
 }
 
-button:hover {
+.button:hover {
   opacity:1;
 }
 
@@ -293,7 +291,6 @@ button:hover {
   .montage-container {
      margin-top: 30px;
      margin: 0px auto;
-     border: 1px white solid;
      display: flex;
     margin-left: 50px;
     margin-right: 50px;
@@ -301,33 +298,29 @@ button:hover {
 
  .column {
      padding: 10px;
-     height: 600px;
  }
 
  .column.montage-main {
      margin: 0px auto;
      flex: 2;
-     border: 1px white solid;
      display: flex;
+     flex-direction: column;
  }
  
  .row {
      display: flex;
      flex-direction: column
  }
+ .row2 {
+     display: flex;
+ }
 
  .column.montage-side {
      margin: 0px auto;
      flex: 0.5;
-     border: 1px white solid;
      display: flex;
+     height: 600px;
  }
-
- #videoElement {
-    width: 500px;
-    height: 375px;
-    background-color: #666;
-}
 
  #canvas {
     width: 500px;
@@ -341,10 +334,11 @@ button:hover {
 
 .img-padding {
     padding: 5px;
+    height: 100%;
 } 
 
 .delete {
-    background-color: #4CAF50;
+    background-color: rgba(159, 165, 159, 0.288);
     color: white;
     padding: 14px 20px;
     margin: 0px 0;
@@ -353,8 +347,141 @@ button:hover {
     width: 100%;
     opacity: 0.9;
 }
+
+.montage-form {
+    width: 100%;
+    padding: 20px;
+    justify-content: space-around;
+    display: flex;
+    align-items: center;
+    color: #ddd;
+}
+
 .img-column {
     /* height: 200px; */
     border:1px white solid;
     margin: 4px 0px;
+}
+
+.space-around{
+    justify-content: space-around;
+}
+
+.align-center{
+    align-items: center;
+}
+
+.mon-button {
+    background-color: rgba(159, 165, 159, 0.288);
+    border: white 1px solid;
+    color: white;
+    padding: 14px 20px;
+    margin: 0px 0;
+    border: none;
+    cursor: pointer;
+    opacity: 0.9;
+}
+
+.image-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.fullsize-button {
+    background-color: rgba(159, 165, 159, 0.288);
+    border: white 1px solid;
+    color: white;
+    padding: 20px;
+    margin: 0px 0;
+    border: none;
+    cursor: pointer;
+    opacity: 0.9;
+    width: 100%;
+}
+
+/* galerie.php */
+.container-image {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  padding: 20px;  
+}
+.container-commentaire {
+    border: 2px solid rgba(159, 165, 159, 0.288);
+    background-color: rgba(159, 165, 159, 0.288);
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.liste-commentaire {
+
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+}
+
+.pagination a {
+   color: white; 
+    background-color: rgba(159, 165, 159, 0.288);
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+
+/* Style the active/current link */
+.pagination a.active {
+    background-color: rgba(159, 165, 159, 0.644);
+    color: white;
+}
+
+/* Add a grey background color on mouse-over */
+.pagination a:hover:not(.active) {background-color: #dddddd;color: black}
+
+.thumbnail {
+    width: 150px; /* Set a small width */
+}
+
+/* Add a hover effect (blue shadow) */
+.thumbnail:hover {
+    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+
+.container-like {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.commentaire {
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+}
+
+.a {
+    margin: 0px;
+}
+.container-publication {
+    width: 100%;
+    height: 50px;
+
+}
+
+.container-bouton-publish {
+    display: flex;
+    justify-content: flex-end;   
+}
+
+.galerie-thumnail {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 50px;
 }

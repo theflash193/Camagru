@@ -1,0 +1,92 @@
+ 
+  .montage-container {
+    margin-top: 30px;
+    margin: 0px auto;
+    border: 1px white solid;
+    display: flex;
+   margin-left: 50px;
+   margin-right: 50px;
+}
+
+.column {
+    padding: 10px;
+    height: 600px;
+}
+
+.column.montage-main {
+    margin: 0px auto;
+    flex: 2;
+    border: 1px white solid;
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+    flex-direction: column
+}
+
+.column.montage-side {
+    margin: 0px auto;
+    flex: 0.5;
+    border: 1px white solid;
+    display: flex;
+}
+
+#canvas {
+   width: 500px;
+   height: 375px;
+   background-color: #555;
+}
+
+.overflow {
+   overflow: scroll;
+}
+
+.img-padding {
+   padding: 5px;
+} 
+
+.delete {
+   background-color: #4CAF50;
+   color: white;
+   padding: 14px 20px;
+   margin: 0px 0;
+   border: none;
+   cursor: pointer;
+   width: 100%;
+   opacity: 0.9;
+}
+
+.montage-form {
+   width: 100%;
+   flex-grow: 0.5;
+   justify-content: space-around;
+   display: flex;
+   align-items: center;
+   color: #ddd;
+}
+
+.img-column {
+   /* height: 200px; */
+   border:1px white solid;
+   margin: 4px 0px;
+}
+
+.space-around{
+   justify-content: space-around;
+}
+
+.align-center{
+   align-items: center;
+}
+
+.mon-button {
+    border: white 1px solid;
+    color: white;
+    padding: 14px 20px;
+    margin: 0px 0;
+    border: none;
+    cursor: pointer;
+    opacity: 0.9;
+}

@@ -42,8 +42,8 @@
 
 
 				<div class="clearfix">
-					<button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
-					<button type="submit" class="signup">Sign Up</button>
+					<button class="button" type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
+					<button  class="button" type="submit" class="signup">Sign Up</button>
 				</div>
 			</div>
 		</form>

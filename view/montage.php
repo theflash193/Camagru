@@ -4,6 +4,24 @@
 
 <div class="montage-container">
     <div class="column montage-main">
+        <form class="montage-form">
+            <div>
+                <input type="radio" value="lorem"> lorem
+            </div>
+            <div>
+                <input type="radio" value="ipsum"> ipsum
+            </div>
+            <div>
+                <input type="radio" value="loremipsuk"> loremipsuk
+            </div>
+        </form>
+        <div style="flex-grow: 3;display: flex;flex-direction: column;">
+            <div class="image-container">
+                <video style="height: 500px; width: 500px;"autoplay="true" id="videoElement"></video>
+                <button class="mon-button">Upload image</button>
+            </div>
+            <button class="fullsize-button">montage</button>    
+        </div>
         <!-- <video autoplay="true" id="videoElement"></video>
         <button id="button"></button>
         <canvas id="canvas"></canvas>
@@ -80,5 +98,3 @@ if (navigator.getUserMedia) {
     });
 </script>
 <?php include_once "layout/footer.php"; ?>
-</body>
-</html>

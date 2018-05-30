@@ -18,7 +18,7 @@ include_once $_SERVER['DOCUMENT_ROOT']."/camagru/utils/global.php";
     <div class="link">
         <a href="/camagru/index.php">Home</a>
         <a href="/camagru/galerie.php">Galerie</a>
-        <a href="/camagru/view/montage.php">Creer son image</a>
+        <a href="/camagru/view/montage.php">Montage d'image</a>
     </div>
     <div class="link">
 <?php if (empty($_SESSION['logged'])) {?>

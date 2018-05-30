@@ -2,7 +2,7 @@
 	include_once "view/layout/header.php";
     ?>
         <div class="container-image">
-            <img style="height: 500px;widt: 700px;background-color: red;" src="public/image/ff15.jpg" alt="">
+            <img style="height: 500px;widt: 700px;" src="public/image/ff15.jpg" alt="">
         </div>
         <div class="container-like">
             <button class="like">Like</button>
@@ -21,7 +21,7 @@
             </div>    
                 <textarea class="container-publication" name="" id=""></textarea>
                 <div class="container-bouton-publish">
-                    <button >Commenter</button>
+                    <button class="mon-button">Commenter</button>
                 </div>
             </div>
         </div>

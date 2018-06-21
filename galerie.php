@@ -39,7 +39,7 @@
             </div>
         </div>
         <div class="galerie-thumnail" id="galerie-thumnail">
-            <div>
+            <!-- <div>
                 <a class="thumbnail" target="_blank" href="img_forest.jpg">
                     <img class="thumbnail" src="http://via.placeholder.com/350x150" alt="Forest">
                 </a>
@@ -48,7 +48,7 @@
                 <a class="thumbnail" target="_blank" href="img_forest.jpg">
                     <img class="thumbnail" src="http://via.placeholder.com/350x150" alt="Forest">
                 </a>
-            </div>
+            </div> -->
         </div>
 </div>
 <script>
@@ -64,6 +64,7 @@
             // document.getElementById("galerie-thumnail").innerHTML = "<div style=\"background-color: red;\">hello</div>"
             console.log(photos.length);
             DefaultPhoto();
+            createGalerie();
             }
         };
         xhttp.open("GET", "loadPhotos.php", true);
@@ -75,7 +76,15 @@
         if (photos !== 'undefined') {
             let title = photos[0].title;
             document.getElementById("ImageShow").src = "img/" + title;
-            document.getElementById("galerie-thumnail").appendChild(createThumbnail());
+            // document.getElementById("galerie-thumnail").appendChild(createThumbnail(title, 1));
+        }
+    }
+
+    function createGalerie() {
+        for (let i = 0; i < photos.length; i++) {
+            var title = photos[i].title;
+            console.log(title); 
+            document.getElementById("galerie-thumnail").appendChild(createThumbnail(title, i));
         }
     }
 
@@ -86,13 +95,14 @@
 
         a.target = "_blank";
         img.setAttribute("class", "thumbnail");
-        img.src = "img/" + photos[0].title;
+        img.src = "img/" + title;
         a.appendChild(img);
+        a.addEventListener("click", function(){ changeImage(title, i); });
         div.appendChild(a);
-        return (a);
+        return (div);
     }
 
-    function changeImage(id, title) {
+    function changeImage(title, id) {
         document.getElementById("ImageShow").src = "img/" + title;
     }
 
@@ -101,7 +111,9 @@
     }
 
     function PaginationNext(id) {
-        if (pagination )
+        if (pagination ) {
+
+        }
     }
 
     function PaginationPrev(id) {

@@ -14,6 +14,7 @@ include_once $_SERVER['DOCUMENT_ROOT']."/camagru/utils/global.php";
     <link rel="stylesheet" href="/camagru/public/style/style.css">
 </html>
 
+<body onload="onLoad()">
 <div class="navbar-fixed">
     <div class="link">
         <a href="/camagru/index.php">Home</a>
@@ -29,4 +30,3 @@ include_once $_SERVER['DOCUMENT_ROOT']."/camagru/utils/global.php";
 <?php }?> 
     </div>
 </div>
-<body>

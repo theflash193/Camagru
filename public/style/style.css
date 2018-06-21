@@ -407,8 +407,9 @@ hr {
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  padding: 20px;  
+  padding: 20px;
 }
+
 .container-commentaire {
     border: 2px solid rgba(159, 165, 159, 0.288);
     background-color: rgba(159, 165, 159, 0.288);
@@ -445,7 +446,9 @@ hr {
 .pagination a:hover:not(.active) {background-color: #dddddd;color: black}
 
 .thumbnail {
-    width: 150px; /* Set a small width */
+    width: 150px;
+    height: 70px;
+     /* Set a small width */
 }
 
 /* Add a hover effect (blue shadow) */
@@ -484,4 +487,13 @@ hr {
     flex-wrap: wrap;
     align-items: center;
     padding: 50px;
+}
+.galerie-thumnail > div {
+    align-items: center;
+    padding: 10px;
+}
+
+.galerie-ImageShow {
+    border: 10px solid rgba(159, 165, 159, 0.288);
+    border-radius: 5px;
 }

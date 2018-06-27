@@ -9,81 +9,77 @@
             <button class="like">Like</button>
         </div>
         <div class="commentaire">
-            <div class="liste-commentaire">
-                <div class="container-commentaire">
-                    <p>Hello. How are you today ?</p>
-                </div>
-                <div class="container-commentaire">
-                    <p>Hello. How are you today ?</p>
-                </div>
-                <div class="container-commentaire">
-                    <p>Hello. How are you today ?</p>
-                </div>
-            </div>    
-                <textarea class="container-publication" name="" id=""></textarea>
-                <div class="container-bouton-publish">
-                    <button class="mon-button">Commenter</button>
-                </div>
+            <div id="liste-commentaire" class="liste-commentaire">
+            </div>
+                <textarea class="container-publication" name="" id="comment"></textarea> 
+                    <div class="container-bouton-publish">
+                        <button onClick= "postComment()" class="mon-button">Commenter</button>
+                    </div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
             </div>
         </div>
         <div style="display: flex;justify-content: space-around;align-item: center;">
-            <div class="pagination">
-                <a href="#">&laquo;</a>
-                <a href="#">1</a>
-                <a class="active" href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#">5</a>
-                <a href="#">6</a>
-                <a href="#">&raquo;</a>
+            <div id="pagination" class="pagination">
             </div>
         </div>
         <div class="galerie-thumnail" id="galerie-thumnail">
-            <!-- <div>
-                <a class="thumbnail" target="_blank" href="img_forest.jpg">
-                    <img class="thumbnail" src="http://via.placeholder.com/350x150" alt="Forest">
-                </a>
-            </div>
-            <div>
-                <a class="thumbnail" target="_blank" href="img_forest.jpg">
-                    <img class="thumbnail" src="http://via.placeholder.com/350x150" alt="Forest">
-                </a>
-            </div> -->
         </div>
 </div>
 <script>
     let photos;
     let nbPagination;
-    console.log(photos);
+    let currentPagination;
+    let ppp;
+    let savePagination;
+    let currentPhoto;
+    let comments;
+    
+    currentPhoto = 0;
+    ppp = 20;
+    savePagination = document.getElementById("pagination");
+    var body = document.body;
+    var s = document.body;
     // upload photo galerie from database
     function onLoad() {
         xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-            photos = JSON.parse(this.responseText);
-            // document.getElementById("galerie-thumnail").innerHTML = "<div style=\"background-color: red;\">hello</div>"
-            console.log(photos.length);
-            DefaultPhoto();
-            createGalerie();
+                photos = JSON.parse(this.responseText);
+                nbPagination = Math.ceil(photos.length / ppp);
+                currentPagination = 1;
+                DefaultPhoto();
+                createGalerie();
+                createPagination();
+                if (photos !== undefined && photos.length != 0) {
+                    LoadComment(photos[currentPhoto].id);
+                }
             }
         };
         xhttp.open("GET", "loadPhotos.php", true);
         xhttp.send();
-        // document.getElementById("galerie-thumnail").appendChild = 
     }
 
     function DefaultPhoto() {
+        let title;
+
         if (photos !== 'undefined') {
-            let title = photos[0].title;
+            title = photos[0].title;
             document.getElementById("ImageShow").src = "img/" + title;
-            // document.getElementById("galerie-thumnail").appendChild(createThumbnail(title, 1));
         }
     }
 
+    // gestion photo et thumbnail
+    function changeImage(title, id) {
+        document.getElementById("ImageShow").src = "img/" + title;
+        currentPhoto = id;
+        updateComments();
+    }
+
     function createGalerie() {
-        for (let i = 0; i < photos.length; i++) {
-            var title = photos[i].title;
-            console.log(title); 
+        let start;
+
+        start = (currentPagination - 1) * ppp;
+        for (let i = start; (i < start + ppp) && i < photos.length; i++) {
+            var title = photos[i].title; 
             document.getElementById("galerie-thumnail").appendChild(createThumbnail(title, i));
         }
     }
@@ -102,22 +98,135 @@
         return (div);
     }
 
-    function changeImage(title, id) {
-        document.getElementById("ImageShow").src = "img/" + title;
-    }
+    // Pagination
+    function createPagination() {
+        let pagination;
+        let prev;
+        let next;
+        let page;
 
-    function changePagination(id) {
-        
-    }
-
-    function PaginationNext(id) {
-        if (pagination ) {
-
+        pagination = savePagination;
+        if (currentPagination != 1) {
+            prev = document.createElement("a");
+            prev.innerHTML = "&laquo;";
+            prev.href = "#";
+            prev.addEventListener("click", function() {PaginationPrev()})
+            pagination.appendChild(prev);
+        }
+        for (let i = 0;i < nbPagination;i++) {
+            page = document.createElement("a");
+            page.href = "#";
+            page.innerHTML = i + 1;
+            page.addEventListener("click", function() {changePagination(i + 1)})
+            if (currentPagination == i + 1) {
+                page.className = "active";
+            }
+            pagination.appendChild(page);
+        } 
+        console.log(currentPagination);
+        console.log(nbPagination);
+        if (currentPagination != nbPagination) {
+            pagination = document.getElementById("pagination");
+            next = document.createElement("a");
+            next.innerHTML = "&raquo;";
+            next.href = "#";
+            next.addEventListener("click", function() {PaginationNext()})
+            pagination.appendChild(next);
         }
     }
 
-    function PaginationPrev(id) {
+    function changePagination(id) {
+        currentPagination = id;
+        let pagination = document.getElementById("pagination");
+        let allPage = document.querySelectorAll(".pagination a");
+        for (let i = 0;i < allPage.length; i++) {
+            pagination.removeChild(allPage[i]);
+        }
+        createPagination();
+    }
 
+    function PaginationNext() {
+        currentPagination++;
+        let pagination = document.getElementById("pagination");
+        let allPage = document.querySelectorAll(".pagination a");
+        for (let i = 0;i < allPage.length; i++) {
+            pagination.removeChild(allPage[i]);
+        }
+        createPagination();
+    }
+
+    function PaginationPrev() {
+        currentPagination--;
+        let pagination = document.getElementById("pagination");
+        let allPage = document.querySelectorAll(".pagination a");
+        for (let i = 0;i < allPage.length; i++) {
+            pagination.removeChild(allPage[i]);
+        }
+        createPagination();
+    }
+
+    // create Commentaire
+    function LoadComment(id) {
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                comments = JSON.parse(this.responseText);
+                CreateComments();
+            }
+        };
+        xhttp.open("GET", "loadComment.php?id=" + id, true);
+        xhttp.send();
+    }
+
+    function updateComments() {
+        let comment = document.getElementById("liste-commentaire");
+        let allComments = document.querySelectorAll("#liste-commentaire div");
+        for (let i = 0;i < allComments.length; i++) {
+            comment.removeChild(allComments[i]);
+        }
+        console.log("regarde");
+        LoadComment(photos[currentPhoto].id);
+    }
+
+    function postComment() {
+        let input = document.getElementById("comment");
+        let comment = input.value;
+        if (comment == "") {
+            return ;
+        }
+        let id_photo = photos[currentPhoto].id;
+
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("comment").value = "";
+                updateComments();
+            }
+        }
+        xhttp.open("POST", "send_comment.php", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("comment=" + comment + "&id_photo=" + id_photo);
+    }
+
+    function CreateComment(comment) {
+        let div;
+        let p;
+
+        p = document.createElement("p")
+        div = document.createElement("div")
+        div.className = "container-commentaire";
+        p.innerText = comment['message'];
+        div.appendChild(p);
+        return (div);
+    }
+
+    function CreateComments() {
+        let commentaire;
+
+        commentaire = document.getElementById("liste-commentaire");
+        for (var i = 0; i < comments.length; i++) {
+            commentaire.appendChild(CreateComment(comments[i]));
+        }
     }
 </script>
 <?php

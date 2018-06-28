@@ -30,26 +30,24 @@
         header('Location: ../index.php');
         exit();
     }
-    // return ;
     try {
         $pdo = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $pdo->exec("USE camagru");
         $query = $pdo->query("SELECT * FROM users WHERE '$email' = username AND '$password' = password");
         $result = $query->fetchAll(); 
-        if ($result->count != 1) {
+        if (count($result) != 1) {
             $_SESSION['error'] = true;
             $_SESSION['message'] = 'email or password is not valid';
             header('Location: ../index.php');
         }
+        $_SESSION['id'] = $result[0]['id'];
+        $_SESSION['username'] = $result[0]['username'];
     }
     catch (PDOException $e) {
         echo 'Connexion échouée : ' . $e->getMessage();
     }
-    
     $_SESSION['logged'] = TRUE;
-    $_SESSION['id'] = $result['id'];
-    $_SESSION['username'] = $result['username'];
 
     header('Location: ../index.php');
 ?>

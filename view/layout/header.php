@@ -22,6 +22,8 @@ include_once $_SERVER['DOCUMENT_ROOT']."/camagru/utils/global.php";
         echo "<span class=\"closebtn\" onclick=\"this.parentElement.style.display='none';\">&times;</span>";
         echo $_SESSION['message'];
         echo "</div>";
+        unset($_SESSION['message']);
+        unset($_SESSION['error']);
     }
 ?>
 

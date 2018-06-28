@@ -3,6 +3,7 @@
     
     unset($_SESSION['logged']);
     unset($_SESSION['username']);
+    unset($_SESSION['id']);
     unset($_SESSION['messageError']);
     unset($_SESSION['emailErr']);
     unset($_SESSION['passwordErr']);

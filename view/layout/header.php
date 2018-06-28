@@ -15,6 +15,16 @@ include_once $_SERVER['DOCUMENT_ROOT']."/camagru/utils/global.php";
 </html>
 
 <body onload="onLoad()">
+
+<?php
+     if (isset($_SESSION['error'])) {
+        echo "<div class=\"alert\">";
+        echo "<span class=\"closebtn\" onclick=\"this.parentElement.style.display='none';\">&times;</span>";
+        echo $_SESSION['message'];
+        echo "</div>";
+    }
+?>
+
 <div class="navbar-fixed">
     <div class="link">
         <a href="/camagru/index.php">Home</a>
@@ -30,3 +40,4 @@ include_once $_SERVER['DOCUMENT_ROOT']."/camagru/utils/global.php";
 <?php }?> 
     </div>
 </div>
+    

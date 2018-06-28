@@ -1,4 +1,7 @@
 <?php
+    if (empty($_SESSION['logged'])) {
+        header('Location: ../index.php');
+    }
 	include_once "layout/header.php";
 ?>
 

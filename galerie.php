@@ -1,4 +1,7 @@
 <?php
+    if (empty($_SESSION['logged'])) {
+        header('Location: index.php');
+    }
 	include_once "view/layout/header.php";
     ?>
         <div class="container-image">

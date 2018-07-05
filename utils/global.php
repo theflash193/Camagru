@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    // session_start();
     $messageError = FALSE;
     $emailErr = "";
     $usernameErr = "";

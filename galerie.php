@@ -1,8 +1,8 @@
 <?php
-    if (empty($_SESSION['logged'])) {
-        header('Location: index.php');
-    }
-	include_once "view/layout/header.php";
+    include_once "view/layout/header.php";
+        if (!isset($_SESSION['logged'])) {
+            header('Location: index.php');
+        }
     ?>
         <div class="container-image">
             <img id="ImageShow" class="galerie-ImageShow" style="height: 500px;width: 700px;">

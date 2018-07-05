@@ -1,6 +1,6 @@
 <?php
+session_start();
 include_once $_SERVER['DOCUMENT_ROOT']."/camagru/config/setup.php";
-include_once $_SERVER['DOCUMENT_ROOT']."/camagru/utils/global.php";
 // include_once "utils/insert.php";
 // create_user($pdo, 'simon muran', 'maxgord77', 'flash-gordon77176@gmail.com');
 ?>
@@ -38,8 +38,7 @@ include_once $_SERVER['DOCUMENT_ROOT']."/camagru/utils/global.php";
     <a  onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Connexion</a>
     <a  onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Inscription</a>
 <?php } else {?>
-    <a href="server/deconnexion.php">Deconnexion</a>
+    <a href="/camagru/server/deconnexion.php">Deconnexion</a>
 <?php }?> 
     </div>
 </div>
-    

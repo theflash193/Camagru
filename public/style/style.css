@@ -240,14 +240,17 @@ hr {
 
 /* Extra styles for the cancel button */
 .cancelbtn {
-  padding: 14px 20px;
   background-color: #f44336;
+}
+
+.confirmbtn {
+  background-color: hsl(115, 90%, 58%);
 }
 
 /* Float cancel and signup buttons and add an equal width */
 .cancelbtn, .signupbtn {
   float: left;
-  width: 50%;
+  /* width: 50%; */
 }
 
 /* Add padding to container elements */
@@ -522,3 +525,4 @@ hr {
 .closebtn:hover {
     color: black;
 }
+

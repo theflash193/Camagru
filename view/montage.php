@@ -1,8 +1,9 @@
 <?php
-    if (empty($_SESSION['logged'])) {
-        header('Location: ../index.php');
-    }
-	include_once "layout/header.php";
+// print_r($_SESSION['logged']);
+include_once "layout/header.php";
+        if (!isset($_SESSION['logged'])) {
+            header('Location: ../index.php');
+        }
 ?>
 
 <div class="montage-container">
@@ -31,23 +32,29 @@
         <canvas crossorigin="anonymous" id="canvas" height="300px" width="300"></canvas>
     </div>
     <div class="column montage-side">
-        <div class="row overflow img-padding">
-            <?php
-                $i = 0;
-                while ($i < 15) {
-                    echo "<div class=\"img-column\">";
-                    echo "<img src=\"http://via.placeholder.com/350x150\" style=\"width: 250px;\">";
-                    echo "<button class=\"delete\" style=\"margin-top: 0px;padding: 2px;cursor: pointer;text-align: center;\">Delete</button>";
-                    echo "</div>";
-                    $i++;       
-                } 
-            ?>
-            </div>
+        <div id="photoCells" class="row overflow img-padding">
         </div>
     </div>
 </div>
 
 <script>
+    let photos;
+    let photoCells;
+    
+    document.getElementById("photoCells").style = "overflow: hidden;";
+    function onLoad() {
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                photos = JSON.parse(this.responseText);
+                console.log(photos);
+                createCells();
+            }
+        };
+        xhttp.open("GET", "../loadPhotoUser.php", true);
+        xhttp.send();
+    }
+
     navigator.getUserMedia = navigator.getUserMedia ||
                          navigator.webkitGetUserMedia ||
                          navigator.mozGetUserMedia;
@@ -78,7 +85,6 @@ if (navigator.getUserMedia) {
          var ctx = canvas.getContext('2d');
          canvas.height = video.videoHeight;
          canvas.width = video.videoWidth;
-        //  sleep(2);
          setTimeout(function(){
          ctx.drawImage(video, 0, 0);
     //do what you need here
@@ -99,12 +105,72 @@ if (navigator.getUserMedia) {
         // promise(canvas).then(successCallback, failureCallback);
         var i = canvas.toDataURL("image/jpeg");
         // var i = a;
-        console.log(i);
         const src = i;
         xhttp.open("POST", "../test.php", true);
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhttp.send("image="+src);
         // xhttp.send({"hello": "a"});
     });
+
+    function createPhotoCell(photo) {
+        let div = document.createElement("div");
+        let img = document.createElement("img");
+        let button = document.createElement("button");
+
+        console.log(photo);
+        div.className = "img-column";
+        img.src = "/camagru/img/" + photo["title"];
+        img.style = "width: 100%;height: 100%";
+        button.className = "delete";
+        button.addEventListener("click", function() {
+            let xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    UpdatePhoto();
+                }
+            };
+
+            xhttp.open("GET", "../DeletePhotoId.php?id="+ photo['id'], true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send();
+        })
+        button.innerHTML = "Supprimer";
+        div.appendChild(img);
+        div.appendChild(button);
+        return (div);
+    }
+
+    function createCells() {
+        let photoCells = document.getElementById("photoCells");
+
+        if (photos.length != 0) {
+            photoCells.style = "overflow: scroll";
+        } else {
+            photoCells.style = "overflow: hidden";
+        }
+        for (let i = 0;i < photos.length;i++) {
+            console.log("yolo");
+            photoCells.appendChild(createPhotoCell(photos[i]));
+        }
+    }
+
+    function UpdatePhoto() {
+        let photoCell = document.getElementById("photoCells");
+        let allPhoto = document.querySelectorAll("#photoCells div");
+
+        for (let i = 0;i < allPhoto.length; i++) {
+            photoCell.removeChild(allPhoto[i]);
+        }
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                photos = JSON.parse(this.responseText);
+                createCells();
+            }
+        };
+        xhttp.open("GET", "/camagru/loadPhotoUser.php", true);
+        xhttp.send();
+    }
 </script>
 <?php include_once "layout/footer.php"; ?>
+

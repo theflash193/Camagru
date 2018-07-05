@@ -19,4 +19,3 @@ function flashAlert(message) {
     alert.appendChild(span);
     alert.appendChild(div);
 }
-

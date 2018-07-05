@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include_once "../utils/validation.php";
     include_once "../utils/global.php";
     include_once "../config/setup.php";

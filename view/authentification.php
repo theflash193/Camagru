@@ -19,7 +19,7 @@
         <?php } ?>
       <input type="password" placeholder="Enter Password" name="password" required>
         
-      <button type="submit">Login</button>
+      <button class="comfirmbtn" type="submit">Login</button>
     </div>
 
     <div class="container" style="background-color:#f1f1f1">

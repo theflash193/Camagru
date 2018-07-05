@@ -422,7 +422,7 @@ hr {
 }
 
 .liste-commentaire {
-
+    word-wrap: break-word;
 }
 
 .pagination {

@@ -190,7 +190,6 @@
         for (let i = 0;i < allComments.length; i++) {
             comment.removeChild(allComments[i]);
         }
-        console.log("regarde");
         LoadComment(photos[currentPhoto].id);
     }
 
@@ -258,10 +257,15 @@
                 for (let i = 0;i < allLike.length; i++) {
                     Like.removeChild(allLike[i]);
                 }
-                if (like[0]['liked'] == 0) {
-                    a.className = "fas fa-heart";
+                console.log(like.length);
+                // if (like.length == 0) {
+                //     a.className = "fas fa-heart";
+                // }
+                if (like[0] == undefined || like[0]['liked'] == 0) {
+                    console.log('hey');
+                        a.className = "far fa-heart";
                 } else {
-                    a.className = "far fa-heart";    
+                    a.className = "fas fa-heart";    
                 }
                 Like.appendChild(a);
             }

@@ -2,12 +2,9 @@
     include_once "/config/setup.php";
     session_start();
     header("Content-Type: application/json; charset=UTF-8");
-
-    $id = 1;
-    $id_photo = 1;
-    $id_user = 1;
-    // $id_user = $_SESSION['id'];
-    // $id_photo = $_GET['id_photo'];
+    
+    $id_user = $_SESSION['id'];
+    $id_photo = $_GET['id_photo'];
 try {
     $pdo = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

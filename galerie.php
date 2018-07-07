@@ -8,8 +8,7 @@
             <img id="ImageShow" class="galerie-ImageShow" style="height: 500px;width: 700px;">
             <!-- <img style="height: 500px;widt: 700px;" src="public/image/ff15.jpg" alt=""> -->
         </div>
-        <div class="container-like">
-            <button class="like">Like</button>
+        <div id="like" class="like"> 
         </div>
         <div class="commentaire">
             <div id="liste-commentaire" class="liste-commentaire">
@@ -35,13 +34,15 @@
     let savePagination;
     let currentPhoto;
     let comments;
-    
+    let like;
+
     currentPhoto = 0;
     ppp = 20;
     savePagination = document.getElementById("pagination");
     var body = document.body;
     var s = document.body;
     // upload photo galerie from database
+
     function onLoad() {
         xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
@@ -55,6 +56,7 @@
                 if (photos !== undefined && photos.length != 0) {
                     LoadComment(photos[currentPhoto].id);
                 }
+                updateLike();
             }
         };
         xhttp.open("GET", "loadPhotos.php", true);
@@ -75,6 +77,7 @@
         document.getElementById("ImageShow").src = "img/" + title;
         currentPhoto = id;
         updateComments();
+        updateLike();
     }
 
     function createGalerie() {
@@ -232,7 +235,41 @@
         }
     }
 
-    function 
+    // Like
+    function updateLike() {
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                like = JSON.parse(this.responseText);
+                let Like = document.getElementById("like");
+                let allLike = document.querySelectorAll(".like a");
+                let a = document.createElement('a');
+                a.addEventListener('click', function (params) {
+                    xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            updateLike();
+                        }
+                    };
+                    xhttp.open("GET", "actionLike.php?id_photo="+ photos[currentPhoto]['id'], true);
+                    xhttp.send();
+                });
+                // console.log(Like);
+                for (let i = 0;i < allLike.length; i++) {
+                    Like.removeChild(allLike[i]);
+                }
+                if (like[0]['liked'] == 0) {
+                    a.className = "fas fa-heart";
+                } else {
+                    a.className = "far fa-heart";    
+                }
+                Like.appendChild(a);
+            }
+        };
+        xhttp.open("GET", "getLike.php?id_photo="+ photos[currentPhoto]['id'], true);
+        xhttp.send();
+    }
+
 </script>
 <?php
 	include_once "view/layout/footer.php";

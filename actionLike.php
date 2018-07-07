@@ -3,10 +3,9 @@
     session_start();
     header("Content-Type: application/json; charset=UTF-8");
 
-    // $id = $_GET['id'];
-    $id = 1;
-    $id_photo = 1;
-    $id_user = 1;
+    print_r($_GET);
+    $id_photo = $_GET['id_photo'];
+    $id_user = $_SESSION['id'];
 try {
     $pdo = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -17,9 +16,9 @@ try {
         $query = $pdo->query("INSERT INTO likes (id_photo, id_user, liked) VALUES ('$id_photo', '$id_user', TRUE)");
     } else {
         if ($result[0]['liked']) {
-            $query = $pdo->query("UPDATE likes SET liked=FALSE WHERE id='$id'");
+            $query = $pdo->query("UPDATE likes SET liked=FALSE WHERE id_photo='$id_photo' AND id_user='$id_user'");
         } else {
-            $query = $pdo->query("UPDATE likes SET liked=TRUE WHERE id='$id'");
+            $query = $pdo->query("UPDATE likes SET liked=TRUE WHERE id_photo='$id_photo' AND id_user='$id_user'");
         }
     }
 }

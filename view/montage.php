@@ -22,7 +22,11 @@ include_once "layout/header.php";
         <div style="flex-grow: 3;display: flex;flex-direction: column;">
             <div class="image-container">
                 <video crossorigin="anonymous" style="height: 500px; width: 500px;"autoplay="true" id="videoElement"></video>
-                <button class="mon-button">Upload image</button>
+                <!-- <button class="mon-button">Upload image</button> -->
+                    <!-- <label for="avatar">Profile picture:</label> -->
+                    <input type="file"
+                        id="avatar" name="avatar"
+                        accept="image/png, image/jpeg" />
             </div>
             <button id="button" class="fullsize-button">montage</button>    
         </div>

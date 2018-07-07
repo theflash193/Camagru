@@ -231,6 +231,8 @@
             commentaire.appendChild(CreateComment(comments[i]));
         }
     }
+
+    function 
 </script>
 <?php
 	include_once "view/layout/footer.php";

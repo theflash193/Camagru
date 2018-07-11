@@ -20,5 +20,15 @@ function flashAlert(message) {
     alert.appendChild(div);
 }
 
+function postFile() {
+    let input = document.getElementById('avatar');
+
+    let xhr = new XMLHttpRequest();
+    new FormData(input.value);
+    // xhr.open("POST", "/camagru/getFile.php");
+    // xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    // oReq.send(new FormData(input.value));
+}
+
 // Array()
 // document.getElementsByClassName

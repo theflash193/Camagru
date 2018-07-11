@@ -25,5 +25,10 @@
     <?php }?>
 
     <?php include_once "/view/layout/footer.php";?>
+    <script>
+        function onLoad() {
+            return ;
+        }
+    </script>
     </body>
 </html>

@@ -26,7 +26,7 @@ include_once "layout/header.php";
                     <!-- <label for="avatar">Profile picture:</label> -->
                     <input type="file"
                         id="avatar" name="avatar"
-                        accept="image/png, image/jpeg" />
+                        accept="image/png, image/jpeg" rdx/>
             </div>
             <button id="button" class="fullsize-button">montage</button>    
         </div>
@@ -84,26 +84,42 @@ if (navigator.getUserMedia) {
 
     button = document.getElementById('button');
     button.addEventListener("click", function() {
+    let input = document.getElementById('avatar');
+    var formData = new FormData();
+
+    formData.append("username", "Groucho");
+    formData.append("accountnum", 123456); // le numéro 123456 est converti immédiatement en chaîne "123456"
+    
+    // fichier HTML choisi par l'utilisateur
+    console.log(input.files);
+    formData.append("userfile", input.files[0]);
+    
+    // objet JavaScript de type fichier
+    var content = '<a id="a"><b id="b">hey!</b></a>'; // the body of the new file...
+    var blob = new Blob([content], { type: "text/xml"});
+    formData.append("webmasterfile", blob);
          var video = document.getElementById("videoElement");
          var canvas = document.getElementById("canvas");
+         canvas.style = "display: none";
          var ctx = canvas.getContext('2d');
          canvas.height = video.videoHeight;
          canvas.width = video.videoWidth;
          setTimeout(function(){
          ctx.drawImage(video, 0, 0);
+        //  postFile();
     //do what you need here
 }, 2000);
          var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
             // Typical action to be performed when the document is ready:
-                    
+            console.log(this.responseText);
             var canvas = document.getElementById("result");
                 canvas.src = "/camagru/test.php";
                 canvas.height = 300;
                 canvas.width = 300;
             
-            console.log(this.responseText);
+            // console.log(this.responseText);
             }
         };
         // promise(canvas).then(successCallback, failureCallback);
@@ -111,9 +127,12 @@ if (navigator.getUserMedia) {
         // var i = a;
         const src = i;
         xhttp.open("POST", "../test.php", true);
-        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhttp.send("image="+src);
-        // xhttp.send({"hello": "a"});
+        // xhttp.setRequestHeader("Content-type", "multipart/form-data");
+        if (input.files.length == 1) {
+            xhttp.send(formData);
+        } else {
+            xhttp.send("image="+src)
+        }
     });
 
     function createPhotoCell(photo) {
@@ -175,6 +194,23 @@ if (navigator.getUserMedia) {
         xhttp.open("GET", "/camagru/loadPhotoUser.php", true);
         xhttp.send();
     }
+
+//     function postFile() {
+//     let input = document.getElementById('avatar');
+//     form = new FormData();
+//     for (var i = 0;i < input.files.length; i++) {
+//         form.append("name", input.files[i]);
+//         form.append("size", input.files[i]);
+//         form.append("type", input.files[i]);
+//         form.append("webkitRelativePath", input.files[i]);
+//     }
+//     let xhr = new XMLHttpRequest();
+//     // new FormData(input.value);
+//     console.log(input.fi);
+//     // xhr.open("POST", "/camagru/getFile.php");
+//     // xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+//     // oReq.send(new FormData(input.value));
+// }
 </script>
 <?php include_once "layout/footer.php"; ?>
 
